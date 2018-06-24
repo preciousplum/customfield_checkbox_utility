@@ -20,7 +20,6 @@ module CustomfieldCheckboxUtility
 
 
       def check_box_edit_tag_with_checkall(view, tag_id, tag_name, custom_value, options={})
-            
         top = ''.html_safe
 
         if custom_value.custom_field.multiple?
@@ -42,13 +41,14 @@ module CustomfieldCheckboxUtility
               optiontags += view.content_tag('option', group[:groupname], :value => group[:userids])
             end
             selecttag = " (".html_safe + l(:label_group).html_safe + ": ".html_safe
-            selecttag += view.content_tag('select', optiontags, :style => "width: 15em", :name => 'group_' + tag_name, :id => 'group_' + tag_name) + " "
+            selecttag += view.content_tag('select', optiontags, :style => "width: 15em", :name => 'group_' + tag_name, :id => 'group_' + tag_name,
+                                          :onchange => 'javascript:cfcbGroupChanged("' + tag_name + '");') + " "
 
             selecttag += check_box_edit_support(view, tag_name, { "label" => :label_check,    "icon" => 'icon-ok',        "method" => "cfcbCheckGroupAll" })
             selecttag += check_box_edit_support(view, tag_name, { "label" => :label_uncheck,  "icon" => 'icon-not-ok',    "method" => "cfcbUncheckGroupAll" })
 
             selecttag += ")".html_safe
-            checktags += view.content_tag('span', selecttag, :class => 'cf_check_box_support') + "\n".html_safe 
+            checktags += view.content_tag('span', selecttag, :class => 'cf_check_box_support') + "\n".html_safe
           end
           tags += view.content_tag('span', checktags, :class => 'cf_check_box_support') + "\n".html_safe 
 
@@ -61,10 +61,14 @@ module CustomfieldCheckboxUtility
           tags += view.content_tag('span', filtertag, :class => 'cf_check_box_support') + "\n".html_safe 
 
           top += tags + "\n".html_safe 
-           
         end
 
-        top + check_box_edit_tag_without_checkall(view, tag_id, tag_name, custom_value, options)
+        top += check_box_edit_tag_without_checkall(view, tag_id, tag_name, custom_value, options)
+        
+        if options[:class] == "user_cf"
+          top += view.javascript_tag('cfcbGroupChanged("' + tag_name + '");')
+        end
+        top
       end
     end
   end

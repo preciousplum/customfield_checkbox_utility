@@ -88,4 +88,18 @@ function cfcbUncheckGroupAll(tagname) {
   cfcbGroupAll(tagname, false)
 }
 
+function cfcbGroupChanged(tagname) {
+  var users = $('input[name="' + tagname + '"]');
+  var groupselect = $('[name="group_' + tagname + '"]');
+  if (groupselect.length > 0) {
+    var groupuserids = groupselect.val().split(','); 
+    for (var i = 0, len = users.length-1; i < len; i++) {
+      if(groupuserids.includes(users[i].value) ) {
+        users[i].parentElement.style.color = "blue";
+      } else {
+        users[i].parentElement.style.color = "";
+      }
+    }
+  }
+}
   
