@@ -1,0 +1,10 @@
+# English strings go here for Rails i18n
+en:
+  label_show_all: Show All
+  label_show_checked: Show Checked
+  label_check_all: Check All
+  label_uncheck_all: Uncheck All 
+  label_filter: Filter
+  label_check: Check
+  label_uncheck: Uncheck
+  

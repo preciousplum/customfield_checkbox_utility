@@ -1,0 +1,26 @@
+span.user_cf.check_box_group {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap; 
+    -webkit-flex-wrap: wrap; 
+  }
+  
+  span.user_cf.check_box_group label {
+    width: 150px;
+  }
+  
+  span.list_cf.check_box_group {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap; 
+    -webkit-flex-wrap: wrap; 
+  }
+  
+  span.list_cf.check_box_group label {
+    width: 150px;
+  }
+ 
+
+  span.cf_check_box_support {
+    margin-right: 1em;
+  }
