@@ -18,8 +18,8 @@ end
 Redmine::Plugin.register :customfield_checkbox_utility do
   name 'Customfield Checkbox Utility plugin'
   author 'preciousplum'
-  description 'This is a plugin for Redmine'
+  description 'This plugin is to improve the usability for Custom Fields of "User" and "List" Format. '
   version '0.0.1'
-  url 'https://github.com/preciousplum/checkbox_checkall'
+  url 'https://github.com/preciousplum/customfield_checkbox_utility'
   author_url 'https://github.com/preciousplum/'
 end
