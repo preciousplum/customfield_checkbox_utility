@@ -4,7 +4,8 @@ module CustomfieldCheckboxUtility
     def self.included(base)
       base.send(:include, InstanceMethods)
       base.class_eval do
-        alias_method_chain :check_box_edit_tag, :checkall
+        alias_method :check_box_edit_tag_without_checkall, :check_box_edit_tag
+        alias_method :check_box_edit_tag, :check_box_edit_tag_with_checkall
       end
     end
     
@@ -22,12 +23,15 @@ module CustomfieldCheckboxUtility
       def check_box_edit_tag_with_checkall(view, tag_id, tag_name, custom_value, options={})
         top = ''.html_safe
 
+        Rails.logger.info "check_box_edit_tag_with_checkall: " + options[:class]
+
+        
         if custom_value.custom_field.multiple?
           tags = ''.html_safe
 
           checktags = check_box_edit_support(view, tag_name, { "label" => :label_check_all,    "icon" => 'icon-ok',        "method" => "cfcbCheckAll" })
           checktags += check_box_edit_support(view, tag_name, { "label" => :label_uncheck_all,  "icon" => 'icon-not-ok',    "method" => "cfcbUncheckAll" })
-          if options[:class] == "user_cf"
+          if options[:class].start_with?("user_cf")
             groups = custom_value.customized.project.groups
             groupdata = [{:groupname => "<< #{l(:label_me)} >>", :userids => User.current.id.to_s}]
             
@@ -65,7 +69,7 @@ module CustomfieldCheckboxUtility
 
         top += check_box_edit_tag_without_checkall(view, tag_id, tag_name, custom_value, options)
         
-        if options[:class] == "user_cf"
+        if options[:class].start_with?("user_cf")
           top += view.javascript_tag('cfcbGroupChanged("' + tag_name + '");')
         end
         top

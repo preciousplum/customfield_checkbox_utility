@@ -4,7 +4,7 @@ Rails.configuration.to_prepare do
   require_dependency 'view_hooks'
 end
 
-ActionDispatch::Callbacks.to_prepare do
+Rails.configuration.to_prepare do
   require_dependency 'project'
 
   unless Redmine::FieldFormat::List.included_modules.include? CustomfieldCheckboxUtility::ListPatch
