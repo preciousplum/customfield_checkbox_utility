@@ -23,9 +23,6 @@ module CustomfieldCheckboxUtility
       def check_box_edit_tag_with_checkall(view, tag_id, tag_name, custom_value, options={})
         top = ''.html_safe
 
-        Rails.logger.info "check_box_edit_tag_with_checkall: " + options[:class]
-
-        
         if custom_value.custom_field.multiple?
           tags = ''.html_safe
 

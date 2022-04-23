@@ -22,8 +22,8 @@ https://github.com/preciousplum/custom_users_as_assignees
     *) Database Migration is **not** required.
 
 ## Compatibility
-This plugin version is compatible with Redmine 3.4.* in principle.  
-However, this plugin has been tested on Redmine 3.4.5 only currently.
+This plugin version is compatible with Redmine 3.4.* or later in principle.  
+However, this plugin has been tested on Redmine 4.2.5 only currently.
 
 ## Screen Image
 "Full width layout" setting is enabled on Custom Fields setting of "User" and "List" Format.
